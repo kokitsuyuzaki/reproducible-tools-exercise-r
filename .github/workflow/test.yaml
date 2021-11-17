@@ -26,5 +26,5 @@ jobs:
       - uses: actions/checkout@v2
 
       # Runs a test code
-      - name: Run a multi-line script
+      - name: Runs a test code
         run: echo Hello, world!
