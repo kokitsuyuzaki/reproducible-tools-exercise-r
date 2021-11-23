@@ -1,5 +1,9 @@
 name: Close inactive issues
 on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
   schedule:
     # Minute, Hour, Day, Month, Weekの純
     - cron: "30 1 * * *"
