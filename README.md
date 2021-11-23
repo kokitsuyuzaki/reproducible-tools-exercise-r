@@ -1,4 +1,5 @@
 # reproducible-tools-exercise-r
+![badge](https://github.com/kokitsuyuzaki/reproducible-tools-exercise-r/actions/workflows/build_push_test.yml/badge.svg)
 
 ## 対話実行
 1. Rを起動

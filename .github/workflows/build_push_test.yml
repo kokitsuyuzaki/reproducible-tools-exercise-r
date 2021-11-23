@@ -29,8 +29,11 @@ jobs:
       - name: Test
         run: docker run --rm -v $(pwd):/work ${{ github.repository_owner }}/${{ env.IMAGE_NAME }}:latest Rscript work/test.R
 
-      - name: Tag
-        run: docker tag ${{ github.repository_owner }}/${{ env.IMAGE_NAME }}:latest ${{ github.repository_owner }}/${{ env.IMAGE_NAME }}:${{ steps.vars.outputs.sha_short }}
+      - name: Tag (Latest)
+        run: docker tag ${{ github.repository_owner }}/${{ env.IMAGE_NAME }}:latest ghcr.io/${{ github.repository_owner }}/${{ env.IMAGE_NAME }}:latest
+
+      - name: Tag (SHA)
+        run: docker tag ${{ github.repository_owner }}/${{ env.IMAGE_NAME }}:${{ steps.vars.outputs.sha_short }} ghcr.io/${{ github.repository_owner }}/${{ env.IMAGE_NAME }}:${{ steps.vars.outputs.sha_short }}
 
       - name: Login
         run: echo ${{ secrets.CR_PAT }} | docker login ghcr.io -u USERNAME --password-stdin
