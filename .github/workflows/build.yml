@@ -23,5 +23,6 @@ jobs:
         with:
           image_name: ${{ env.repo-name }}
           github_token: ${{ secrets.GITHUB_TOKEN }}
+          docker_io_token: ${{ secrets.DOCKER_TOKEN }}
 
 # https://github.com/marketplace/actions/docker-setup-buildx
