@@ -36,8 +36,11 @@ jobs:
       - name: Test
         run: docker run --rm -v $(pwd):/work ${{ github.repository_owner }}/${{ env.IMAGE_NAME }}:latest Rscript work/test.R
 
-      - name: Tag
+      - name: Tag (Latest)
         run: docker tag ${{ github.repository_owner }}/${{ env.IMAGE_NAME }} ghcr.io/${{ github.repository_owner }}/${{ env.IMAGE_NAME }}
+
+      - name: Tag (SHAR)
+        run: docker tag ghcr.io/${{ github.repository_owner }}/${{ env.IMAGE_NAME }}:latest ghcr.io/${{ github.repository_owner }}/${{ env.IMAGE_NAME }}:${{ steps.vars.outputs.sha_short }}
 
       - name: Push (Latest)
         run: docker push ghcr.io/${{ github.repository_owner }}/${{ env.IMAGE_NAME }}:latest
@@ -48,3 +51,4 @@ jobs:
 # https://github.com/marketplace/actions/docker-login
 # https://github.com/inutano/cwl-log-generator/blob/master/.github/workflows/main.yml
 # https://www.docker.com/blog/first-docker-github-action-is-here/
+# https://github.com/docker/login-action
