@@ -14,7 +14,7 @@ source("reductDims.R")
 
 ```r
 input <- read.csv("YOUR_CSV_FILE")
-out <- reaductDims(
+out <- reductDims(
 	input = input # User's CSV file
 	dim_pca = 10, # Dimension of PCA
 	dim_tsne = 2, # Dimension of t-SNE
