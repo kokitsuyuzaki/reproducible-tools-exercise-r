@@ -14,6 +14,7 @@ source("reductDims.R")
 
 ```r
 input <- read.csv("YOUR_CSV_FILE")
+# 次元圧縮実行
 out <- reductDims(
 	input = input # User's CSV file
 	dim_pca = 10, # Dimension of PCA
@@ -21,6 +22,7 @@ out <- reductDims(
 	type_pca = "svd", # Type of PCA
 	verbose = TRUE # verbose-mode
 	)
+# プロット
 plotDims(out)
 ```
 
