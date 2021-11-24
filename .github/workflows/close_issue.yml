@@ -28,4 +28,5 @@ jobs:
           days-before-pr-close: -1
           repo-token: ${{ secrets.GITHUB_TOKEN }}
 
+# Ref
 # https://docs.github.com/ja/actions/managing-issues-and-pull-requests/closing-inactive-issues

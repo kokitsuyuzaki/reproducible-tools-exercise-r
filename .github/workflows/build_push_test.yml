@@ -48,6 +48,7 @@ jobs:
       - name: Push (SHA)
         run: docker push ghcr.io/${{ github.repository_owner }}/${{ env.IMAGE_NAME }}:${{ steps.vars.outputs.sha_short }}
 
+# Ref
 # https://github.com/marketplace/actions/docker-login
 # https://github.com/inutano/cwl-log-generator/blob/master/.github/workflows/main.yml
 # https://www.docker.com/blog/first-docker-github-action-is-here/
