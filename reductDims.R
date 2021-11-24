@@ -1,6 +1,7 @@
 # Package Loading
 library("Rtsne")
 library("irlba")
+library("testthat")
 
 # Data Analysis Function
 reductDims <- function(input, dim_pca=10, dim_tsne=2,
