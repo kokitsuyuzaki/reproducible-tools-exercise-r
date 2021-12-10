@@ -7,10 +7,11 @@ out <- reductDims(
     input=input,
     dim_pca=10,
     dim_tsne=2,
+    dim_umap=2,
     type_pca="svd",
     verbose=TRUE)
 
-expect_equal(length(out), 2)
+expect_equal(length(out), 3)
 expect_equal(length(out[[1]]), 3)
 expect_equal(length(out[[2]]), 14)
 
