@@ -49,7 +49,7 @@ jobs:
       - name: Push (SHA)
         run: docker push ghcr.io/${{ github.repository_owner }}/${{ env.IMAGE_NAME }}:${{ steps.vars.outputs.sha_short }}
 
-      - uses: docker/build-push-action@v2
+      - uses: docker/build-push-action@v1
         with:
           # The two entries below need to be entered as 
           # github secrets. The "secret" names are "DOCKER_USERNAME"
