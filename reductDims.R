@@ -2,9 +2,10 @@
 library("Rtsne")
 library("irlba")
 library("testthat")
+library("uwot")
 
 # Data Analysis Function
-reductDims <- function(input, dim_pca=10, dim_tsne=2,
+reductDims <- function(input, dim_pca=10, dim_tsne=2,dim_umap=2,
 	type_pca=c("svd", "irlba"), verbose=TRUE){
 	# Argument Check
 	.checkreductDims(input, dim_pca, dim_tsne, verbose)
@@ -29,8 +30,13 @@ reductDims <- function(input, dim_pca=10, dim_tsne=2,
 		message("t-SNE is performing...")
 	}
 	out_tsne <- Rtsne(out_PCA$u, dims=dim_tsne, perplexity=10)
+	# UMAP
+	if(verbose){
+		message("UMAP is performing...")
+	}
+	out_umap <- uwot::umap(out_PCA$u, n_components=dim_umap, n_neighbors = 15, ret_nn=TRUE)
 	# Output
-	list(pca=out_PCA, tsne=out_tsne)
+	list(pca=out_PCA, tsne=out_tsne, umap=out_umap)
 }
 
 # Check Function
@@ -62,11 +68,14 @@ reductDims <- function(input, dim_pca=10, dim_tsne=2,
 
 # Visualization Function
 plotDims <- function(out){
-	layout(t(1:2))
+	layout(t(1:3))
 	plot(out$pca$u[,1:2], main="PCA",
 		xlab="Dim1", ylab="Dim2",
 		col=rgb(0,0,1), pch=16)
 	plot(out$tsne$Y, main="t-SNE",
+		xlab="Dim1", ylab="Dim2",
+		col=rgb(0,0,1), pch=16)
+	plot(out$umap$embedding[,1:2], main="umap",
 		xlab="Dim1", ylab="Dim2",
 		col=rgb(0,0,1), pch=16)
 }
