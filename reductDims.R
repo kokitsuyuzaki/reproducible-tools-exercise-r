@@ -34,7 +34,7 @@ reductDims <- function(input, dim_pca=10, dim_tsne=2,dim_umap=2,
 	if(verbose){
 		message("UMAP is performing...")
 	}
-	out_umap <- uwot::umap(out_PCA$u, n_components=dim_umap, n_neighbors = 15)
+	out_umap <- uwot::umap(out_PCA$u, n_components=dim_umap, n_neighbors = 15, ret_nn=TRUE)
 	# Output
 	list(pca=out_PCA, tsne=out_tsne, umap=out_umap)
 }
@@ -68,14 +68,14 @@ reductDims <- function(input, dim_pca=10, dim_tsne=2,dim_umap=2,
 
 # Visualization Function
 plotDims <- function(out){
-	layout(t(1:2))
+	layout(t(1:3))
 	plot(out$pca$u[,1:2], main="PCA",
 		xlab="Dim1", ylab="Dim2",
 		col=rgb(0,0,1), pch=16)
 	plot(out$tsne$Y, main="t-SNE",
 		xlab="Dim1", ylab="Dim2",
 		col=rgb(0,0,1), pch=16)
-	plot(out$umap[,1:2], main="umap",
+	plot(out$umap$embedding[,1:2], main="umap",
 		xlab="Dim1", ylab="Dim2",
 		col=rgb(0,0,1), pch=16)
 }
